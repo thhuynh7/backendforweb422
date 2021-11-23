@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema;
+const mongoose = require("mongoose")
+const { ObjectId } = mongoose.Schema
 
 const productSchema = new mongoose.Schema(
   {
@@ -8,64 +8,64 @@ const productSchema = new mongoose.Schema(
       trim: true,
       required: true,
       maxlength: 32,
-      text: true,
+      text: true
     },
     slug: {
       type: String,
       unique: true,
       lowercase: true,
-      index: true,
+      index: true
     },
     description: {
       type: String,
       required: true,
       maxlength: 2000,
-      text: true,
+      text: true
     },
     price: {
       type: Number,
       required: true,
       trim: true,
-      maxlength: 32,
+      maxlength: 32
     },
     category: {
       type: ObjectId,
-      ref: "Category",
+      ref: "Category"
     },
     subs: [
       {
         type: ObjectId,
-        ref: "Sub",
-      },
+        ref: "Sub"
+      }
     ],
     quantity: Number,
     sold: {
       type: Number,
-      default: 0,
+      default: 0
     },
     images: {
-      type: Array,
+      type: Array
     },
-    shipping: {
+    bestseller: {
       type: String,
-      enum: ["Yes", "No"],
+      enum: ["Yes", "No"]
     },
     color: {
       type: String,
-      enum: ["Black", "Brown", "Silver", "White", "Blue"],
+      enum: ["Black", "Brown", "Silver", "White", "Blue"]
     },
     brand: {
       type: String,
-      enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+      enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"]
     },
     ratings: [
       {
         star: Number,
-        postedBy: { type: ObjectId, ref: "User" },
-      },
-    ],
+        postedBy: { type: ObjectId, ref: "User" }
+      }
+    ]
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("Product", productSchema)
