@@ -3,11 +3,11 @@ const Restaurant = require('../models/restaurantDB');
 // POST /api/restaurants
 exports.createRestaurant = async (req, res, next) => {
   try {
-  const restaurant = await Restaurant.create(req.body);
+    const restaurant = await Restaurant.create(req.body);
 
-  res.status(201).json({ success: true, data: restaurant });
+    res.status(201).json({ success: true, data: restaurant });
   } catch (err) {
-    res.status(400).json( { success: false });
+    res.status(400).json({ success: false });
   }
 };
 
@@ -18,8 +18,8 @@ exports.getRestaurants = async (req, res, next) => {
 
     res.status(200).json({ success: true, data: restaurant });
   } catch (err) {
-    res.status(400).json( { success: false });
-  }  
+    res.status(400).json({ success: false });
+  }
 };
 
 // GET /api/restaurants/:id
@@ -29,7 +29,7 @@ exports.getRestaurant = async (req, res, next) => {
 
     res.status(200).json({ success: true, data: restaurant });
   } catch (err) {
-    res.status(400).json( { success: false });
+    res.status(400).json({ success: false });
   }
 };
 

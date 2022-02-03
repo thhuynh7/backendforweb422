@@ -28,9 +28,9 @@ module.exports = class RestaurantDB {
   }
 
   // Pass the connection string to `initialize()`
-  initialize(connectionString) {
+  initialize() {
     return new Promise((resolve, reject) => {
-      const db = mongoose.createConnection(connectionString, {
+      const db = mongoose.createConnection(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
       });
