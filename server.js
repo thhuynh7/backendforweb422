@@ -1,36 +1,19 @@
-// Heroku Link: https://backendforweb422.herokuapp.com/api/
-
-const express = require('express');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const colors = require('colors');
-const connectDB = require('./config/db');
 
-// const morgan = require('morgan')
+dotenv.config({ path: './config.env' });
+const app = require('./app');
 
-// Load Environment Variables
-dotenv.config({ path: './config/config.env' });
+const DB = process.env.MONGO_URI;
 
-// Connect to database
-connectDB();
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
+  .then(() => console.log('DB connection successful!👋'));
 
-// Route files
-const restaurants = require('./routes/restaurants');
-
-const app = express();
-
-// Body parser
-app.use(express.json());
-
-// Mount routers
-app.use('/api/restaurants', restaurants);
-
-const PORT = process.env.PORT || 5000;
-
-const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
-
-// Handle unhandled rejections
-process.on('unhandledRejection', (err, promise) => {
-  console.log(`Error: ${err.message}`.red);
-  // Close server & exit process
-  server.close(() => process.exit(1));
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
 });
