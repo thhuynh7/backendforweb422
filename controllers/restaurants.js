@@ -12,6 +12,8 @@ exports.createRestaurant = async (req, res, next) => {
 };
 
 // GET /api/restaurants
+// http://localhost:5000/api/restaurants
+
 exports.getRestaurants = async (req, res, next) => {
   try {
     const restaurant = await Restaurant.find();
