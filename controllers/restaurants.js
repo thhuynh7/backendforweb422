@@ -19,6 +19,10 @@ exports.getRestaurants = async (req, res, next) => {
     const restaurant = await Restaurant.find();
 
     res.status(200).json({ success: true, data: restaurant });
+
+    // console.log(restaurant.map(x => x.name));
+    // this proved restaurant is an array of objects
+    // so Restaurant (model) is an object?
   } catch (err) {
     res.status(400).json({ success: false });
   }
